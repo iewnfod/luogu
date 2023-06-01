@@ -24,7 +24,7 @@ int dfs(int x, int used_time) {
 
 int main() {
     cin >> T >> M;
-
+    
     for (int i = 1; i <= M; i++) {
         cin >> times[i] >> values[i];
     }
