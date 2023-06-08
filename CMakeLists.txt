@@ -18,3 +18,7 @@ add_executable(P1077 P1077.cpp)
 add_executable(P3842 P3842.cpp)
 add_executable(P2249 P2249.cpp)
 add_executable(B3627 B3627.cpp)
+add_executable(P1873 P1873.cpp)
+
+add_executable(P2440 P2440.cpp)
+add_executable(P2678 P2678.cpp)

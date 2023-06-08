@@ -4,29 +4,25 @@ using namespace std;
 
 int n, c;
 int num[200001];
-long int result, rightValue, target;
+long long result;
+int target;
 map<int, int> num_number;
 
 int main() {
-    cin >> n >> c;
+    scanf("%d %d", &n, &c);
     // 输入
     for (int i = 0; i < n; i++) {
-        cin >> num[i];
+        scanf("%d", &num[i]);
         // 记录每个数字的个数
-        if (num_number[num[i]]) num_number[num[i]] ++;
-        else num_number[num[i]] = 1;
+        num_number[num[i]] ++;
     }
-    // 排序
-    sort(num, num + n, less<>());
     // 遍历
     for (int i = 0; i < n; i++) {
         target = num[i] + c;
-        rightValue = lower_bound(num, num + n, target) - num;
-        if (num[rightValue] - num[i] == c) {
-            // cout << num[i] << "(" << i << ")" << " " << target << "(" << rightValue << ")" << " " << num_number[num[rightValue]] << endl;
-            result += num_number[num[rightValue]];
-        }
+        if (num_number[target])
+            result += num_number[target];
     }
-    cout << result << endl;
+
+    printf("%lld", result);
     return 0;
 }
