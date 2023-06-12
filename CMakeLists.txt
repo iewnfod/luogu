@@ -22,3 +22,6 @@ add_executable(P1873 P1873.cpp)
 
 add_executable(P2440 P2440.cpp)
 add_executable(P2678 P2678.cpp)
+add_executable(P3853 P3853.cpp)
+add_executable(P1182 P1182.cpp)
+add_executable(P3743 P3743.cpp)
