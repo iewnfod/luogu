@@ -10,15 +10,21 @@ const int NUMBERS[] = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
 const int USED = 4;
 
 int n, ans;
+int mem[1000];
 
 int getMatchNumber(int x) {
-    if (x < 10) return NUMBERS[x];
+    if (mem[x]) return mem[x];
+    if (x < 10) {
+        mem[x] = NUMBERS[x];
+        return mem[x];
+    }
 
     int sum = 0;
     while (x) {
         sum += NUMBERS[x % 10];
         x /= 10;
     }
+    mem[x] = sum;
     return sum;
 }
 
