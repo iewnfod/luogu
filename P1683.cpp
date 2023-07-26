@@ -6,27 +6,26 @@
 
 using namespace std;
 
-const int directions[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+const int dx[] = {0, 0, 1, -1};
+const int dy[] = {1, -1, 0, 0};
 
 int w, h;
 int grid[21][21], used[21][21];
-int ans;
+int ans = 1;
 
-void dfs(int x, int y, int n) {
-    printf("Move to: %d %d\n", x, y);
-    ans = max(ans, n);
+void dfs(int x, int y) {
     // 查看四周四个点，是不是可行的，可行就走，或者不走，不行就不走
-    for (auto direction : directions) {
-        int new_x = x + direction[0], new_y = y + direction[1];
+    for (int i = 0; i < 4; i ++) {
+        int new_x = x + dx[i], new_y = y + dy[i];
         if (
-                1 <= new_x && new_x <= w
-                && 1 <= new_y && new_y <= h
-                && grid[new_y][new_x]
-                && !used[new_y][new_x]
+            1 <= new_x && new_x <= w
+            && 1 <= new_y && new_y <= h
+            && grid[new_y][new_x]
+            && !used[new_y][new_x]
         ) {
             used[new_y][new_x] = 1;
-            dfs(new_x, new_y, n+1);
-            used[new_y][new_x] = 0;
+            ans ++;
+            dfs(new_x, new_y);
         }
     }
 }
@@ -39,10 +38,10 @@ int main() {
         cin >> s;
         for (int j = 1; j <= w; j++) {
             switch (s[j-1]) {
-                case '.':
+                case '#':
                     grid[i][j] = 0;
                     break;
-                case '#':
+                case '.':
                     grid[i][j] = 1;
                     break;
                 case '@':
@@ -57,7 +56,7 @@ int main() {
     }
 
     used[start_y][start_x] = 1;
-    dfs(start_x, start_y, 1);
+    dfs(start_x, start_y);
 
     printf("%d", ans);
 }
