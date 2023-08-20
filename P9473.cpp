@@ -8,6 +8,29 @@ using namespace std;
 
 int T;
 
+vector<int> prime(int n) {
+    vector<int> result;
+    result.push_back(2);
+
+    for (int i = 3; i < n; i++) {
+        bool flag = true;
+        int jStop = sqrt(i);
+        for (int j = 3; j <= jStop; j+=2) {
+            if (!(i % j)) {
+                flag = false;
+                break;
+            }
+        }
+
+        if (flag) {
+            result.push_back(i);
+            printf("%d\n", i);
+        }
+    }
+
+    return result;
+}
+
 int gcd(int a, int b) {
     int temp = b;
     while (a % b) {
